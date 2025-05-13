@@ -5,6 +5,7 @@
    https://github.com/lhl77/HestiaCP-WHMCS-Module
 */
 
+use Illuminate\Database\Capsule\Manager as Capsule;
 
 function hestia_MetaData()
 {
@@ -85,10 +86,7 @@ function hestia_CreateAccount($params)
 
         logModuleCall('hestia', 'CreateAccount_UserAccount', 'https://' . $params["serverhostname"] . ':' . $params["serverport"] . '/api/' . $postdata, $answer);
 
-        /* 保存username */
-        Capsule::table('tblhosting')->where('id', $params['serviceid'])->update([
-            'username' => $createName,
-        ]);
+        
 
         // Enable ssh access
         if (($answer == 0) && ($params["configoption2"] == 'on')) {
@@ -143,6 +141,10 @@ function hestia_CreateAccount($params)
     } else {
         $result = $answer;
     }
+    /* 保存username */
+    Capsule::table('tblhosting')->where('id', $params['serviceid'])->update([
+        'username' => $createName,
+    ]);
 
     return $result;
 }
