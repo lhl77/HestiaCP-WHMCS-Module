@@ -1,3 +1,7 @@
+# 主要修改点
+1. 增加ClientArea信息展示
+2. 修复不填写域名/不开启随机用户名时无法创建账号问题
+
 # HestiaCP-WHMCS-Module
 HestiaCP WMHCS Module<br>
 The module uses the recommended `access/secret keys` authentication.
